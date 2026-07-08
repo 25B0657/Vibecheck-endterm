@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+vibecheck-backend/venv/
+
+# Environment variables
+.env
+*.env
+
+# React
+node_modules/
+dist/
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Old test files
+kaggledataset.py
+mood_analyzer.py
+results.txt
+sentences.txt
+test.txt
+test_env.py
+test_flask.py
