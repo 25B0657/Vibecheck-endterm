@@ -28,7 +28,6 @@ def preprocess(text):
     stop_words = set(stopwords.words("english"))
     filtered_words = [word for word in tokens if word not in stop_words]
 
-    # Step 5: Lemmatize
     lemmatizer = WordNetLemmatizer()
     lemmatized_words = [lemmatizer.lemmatize(word) for word in filtered_words]
 
