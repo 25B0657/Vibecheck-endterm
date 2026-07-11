@@ -2,10 +2,10 @@ import nltk
 import pandas as pd
 import re
 
-#nltk.download('punkt')
+nltk.download('punkt')
 #nltk.download('stopwords')
 #nltk.download('wordnet')
-#nltk.download('punkt_tab')
+nltk.download('punkt_tab')
 
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
