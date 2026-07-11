@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
+import traceback
 
 from Week3 import predict_emotion
 from lastfm_fetcher import fetch_tracks
@@ -14,10 +15,8 @@ def health_check():
 @app.route("/predict", methods=["POST"])
 def predict():
 
-    #Read JSON from data
     data = request.get_json()
 
-    #Handling possible error or exceptions
     if not data or "text" not in data:
         return jsonify({
             "error": "Missing 'text' in request body."
@@ -27,7 +26,7 @@ def predict():
 
     try:
         emotion, confidence = predict_emotion(text)
-        
+
         tracks = fetch_tracks(emotion)
 
         return jsonify({
@@ -37,6 +36,8 @@ def predict():
         })
 
     except Exception as e:
+        traceback.print_exc()
+
         return jsonify({
             "error": str(e)
         }), 500

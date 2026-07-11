@@ -9,36 +9,36 @@ function App() {
   const [error, setError] = useState("");
 
   async function checkVibe() {
-    setLoading(true);
-    setError("");
-    setResult(null);
+  setLoading(true);
+  setError("");
+  setResult(null);
 
-    try {
-      const response = await fetch("https://vibecheck-endterm.onrender.com/predict", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          text: text,
-        }),
-      });
+  try {
+    const response = await fetch("https://vibecheck-endterm.onrender.com/predict", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        text: text,
+      }),
+    });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "Something went wrong.");
-      }
-
-      const data = await response.json();
-      setResult(data);
-    } catch (error) {
-      setError(
-        "Unable to connect to the server. Please make sure the Flask backend is running and try again."
-      );
-    } finally {
-      setLoading(false);
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error || "Something went wrong.");
     }
+
+    const data = await response.json();
+    setResult(data);
+
+  } catch (error) {
+    console.error(error);
+    setError(error.message);
+  } finally {
+    setLoading(false);
   }
+}
 
   return (
     <div className="App">
