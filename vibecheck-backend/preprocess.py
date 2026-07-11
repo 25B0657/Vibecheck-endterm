@@ -3,8 +3,8 @@ import pandas as pd
 import re
 
 nltk.download('punkt')
-#nltk.download('stopwords')
-#nltk.download('wordnet')
+nltk.download('stopwords')
+nltk.download('wordnet')
 nltk.download('punkt_tab')
 
 from nltk.tokenize import word_tokenize
@@ -42,22 +42,4 @@ def preprocess(text):
         lemmatized_words.append(lemmatizer.lemmatize(word))
 
     return lemmatized_words
-
-## 
-## #Question 3:
-## #testing the function preprocess(text)
-## 
-## Sentence1 = "Puppies running happily AND enjoying the beautiful gardens!"
-## Sentence2 = "Where are you? You'll be late for the interview."
-## Sentence3 = "I'm SO hyped!!!!"
-## Sentence4 = "ugh... everything's going wrong"
-## Sentence5 = "Surprisingly my password is also ROHIT@1234 !"
-## 
-## print("\n checking if the preprocess() is working properly or not")
-## print(preprocess(Sentence1))
-## print(preprocess(Sentence2))
-## print(preprocess(Sentence3))
-## print(preprocess(Sentence4))
-## print(preprocess(Sentence5))
-## 
 
