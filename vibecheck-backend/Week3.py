@@ -8,10 +8,18 @@ from preprocess import preprocess   #Importing the function preprocess from prep
 
 # Load Hugging Face Emotion Model
 # Question 2
-classifier = pipeline(
-    "text-classification",
-    model="bhadresh-savani/distilbert-base-uncased-emotion"
-    )
+classifier = None
+
+def get_classifier():
+    global classifier
+
+    if classifier is None:
+        classifier = pipeline(
+            "text-classification",
+            model="bhadresh-savani/distilbert-base-uncased-emotion"
+        )
+
+    return classifier
 
 
 # Question 3
@@ -25,8 +33,9 @@ def predict_emotion(text):
     cleaned_text = " ".join(tokens)
 
     # c. classify
+    classifier = get_classifier()
     result = classifier(cleaned_text)
-
+    
     # d. extract label and score
     label = result[0]['label']
     score = result[0]['score']
