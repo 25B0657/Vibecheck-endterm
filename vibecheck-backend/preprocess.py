@@ -1,45 +1,35 @@
 import nltk
-import pandas as pd
 import re
 
-nltk.download('punkt')
-nltk.download('stopwords')
-nltk.download('wordnet')
-nltk.download('punkt_tab')
+# Download required NLTK resources
+nltk.download("punkt")
+nltk.download("punkt_tab")
+nltk.download("stopwords")
+nltk.download("wordnet")
+nltk.download("omw-1.4")
 
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 
-#Question 2:
 
 def preprocess(text):
 
-    # step 1 is convert the text in lowercase
+    # Step 1: Convert to lowercase
     text = text.lower()
 
-    # step 2 is remove punctuation
-    text = re.sub(r'[^\w\s]', '', text)
+    # Step 2: Remove punctuation
+    text = re.sub(r"[^\w\s]", "", text)
 
-    # step 3 is perform tokenization on the text
+    # Step 3: Tokenize
     tokens = word_tokenize(text)
 
-    # step 4 is stop word removal from the english text
-    stop_words = set(stopwords.words('english'))
+    # Step 4: Remove stop words
+    stop_words = set(stopwords.words("english"))
+    filtered_words = [word for word in tokens if word not in stop_words]
 
-    filtered_words = []
-
-    for word in tokens:
-        if word not in stop_words:
-            filtered_words.append(word)
-
-    # step 5 is perform lemmatization on the text
+    # Step 5: Lemmatize
     lemmatizer = WordNetLemmatizer()
-
-    lemmatized_words = []
-
-    for word in filtered_words:
-        lemmatized_words.append(lemmatizer.lemmatize(word))
+    lemmatized_words = [lemmatizer.lemmatize(word) for word in filtered_words]
 
     return lemmatized_words
-
