@@ -23,24 +23,25 @@ def predict():
         }), 400
 
     text = data["text"]
-
+    
+    
     try:
+        
+        print("Step 1")
         emotion, confidence = predict_emotion(text)
-
+        print("Step 2")
         tracks = fetch_tracks(emotion)
-
-        return jsonify({
-            "emotion": emotion,
-            "confidence": confidence,
-            "tracks": tracks
-        })
+        print("Step 3")
+    
+    return jsonify({
+        "emotion": emotion,
+        "confidence": confidence,
+        "tracks": tracks
+    })
 
     except Exception as e:
-        traceback.print_exc()
-
-        return jsonify({
-            "error": str(e)
-        }), 500
+    print("ERROR:", e)
+    return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
     app.run(debug=True)
