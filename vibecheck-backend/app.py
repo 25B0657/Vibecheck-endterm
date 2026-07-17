@@ -28,10 +28,8 @@ def predict():
     try:
         # Predict emotion
         emotion, confidence = predict_emotion(text)
-
         # Fetch tracks
         tracks = fetch_tracks(emotion)
-
         # Return successful response
         return jsonify({
             "emotion": emotion,
